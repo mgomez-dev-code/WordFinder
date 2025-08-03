@@ -26,12 +26,13 @@ This solution implements the `WordFinder` class as described in the technical ch
 
 ## Example Matrix
 
+```plaintext
 a b c d c
 f g w i o
 c h i l l
 p q n s d
 u v d x y
-
+```
 
 Example wordstream: `["cold", "wind", "snow", "chill"]`  
 Result: `["chill", "cold", "wind"]`
