@@ -1,48 +1,87 @@
-# WordFinder Challenge
+# WordFinder (.NET + C#)
 
-## Overview
+![.NET](https://img.shields.io/badge/.NET-8-512BD4?logo=dotnet&logoColor=white)
+![Language: C#](https://img.shields.io/badge/Language-C%23-239120?logo=csharp&logoColor=white)
+![Tests: xUnit](https://img.shields.io/badge/Tests-xUnit-6aa84f)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-This solution implements the `WordFinder` class as described in the technical challenge. It efficiently searches a character matrix for the top 10 most repeated words from a given word stream, searching horizontally (left to right) and vertically (top to bottom).
-
-## Features
-
-- Accepts a matrix up to 64x64 in size.
-- Searches both rows and columns for valid words.
-- Efficiently returns the 10 most repeated words found in the matrix.
-- Includes unit tests with `xUnit`.
-
-## Project Structure
-
-- `WordFinderLib`: Class library containing the `WordFinder` logic.
-- `WordFinderApp`: Optional console app for manual testing.
-- `WordFinder.Tests`: xUnit test project with unit tests.
-
-## How to Run
-
-1. Clone the repository.
-2. Open the solution in Visual Studio.
-3. Set `WordFinderApp` as the startup project if you'd like to run the console example.
-4. Run tests using Test Explorer (`Test -> Run All Tests`) or via CLI.
-
-## Example Matrix
-
-```plaintext
-a b c d c
-f g w i o
-c h i l l
-p q n s d
-u v d x y
-```
-
-Example wordstream: `["cold", "wind", "snow", "chill"]`  
-Result: `["chill", "cold", "wind"]`
-
-## Notes
-
-- Words must appear exactly as provided (case-sensitive).
-- Duplicates in the input stream are only counted once.
-- If no matches are found, the result is an empty list.
+A small library + console sample to search a character matrix for the **Top 10 most repeated words** coming from a word stream.  
+Matches are scanned **horizontally (left→right)** and **vertically (top→bottom)**.
 
 ---
 
-© Mauricio G.
+## Features
+
+- Looks up words across **rows** and **columns**.
+- Returns the **Top 10** words by frequency **in the input stream** that also exist in the matrix (ties resolved alphabetically).
+- **Case-sensitive** matching (inputs must match exactly).
+- Unit tests with **xUnit**.
+
+---
+
+## Project Structure
+
+    WordFinder.sln
+    ├─ WordFinderLib/          # WordFinder class (library)
+    │  └─ WordFinder.cs
+    ├─ WordFinderApp/          # Optional console app (manual run)
+    │  └─ Program.cs
+    └─ WordFinder.Tests/       # xUnit tests
+       └─ WordFinderTests.cs
+
+---
+
+## Getting Started
+
+1) Build & Test (CLI)
+
+    dotnet build
+    dotnet test
+
+2) Run the console sample
+
+    dotnet run --project WordFinderApp
+
+---
+
+## Example
+
+Matrix
+
+    a b c d c
+    f g w i o
+    c h i l l
+    p q n s d
+    u v d x y
+
+Word stream
+
+    ["cold", "wind", "snow", "chill"]
+
+Result
+
+    ["chill", "cold", "wind"]
+
+---
+
+## How it works (brief)
+
+- Precomputes a set with **all substrings** from every row and every column.
+- For every word in the input stream, increments its count if it exists in that set.
+- Finally sorts by **count desc**, then **word asc**, and takes **Top 10**.
+
+*Complexity (sketch):* building the set is roughly `O(R*C*(R+C))` substrings with hashing; lookups are `O(1)` average per stream item.
+
+---
+
+## Notes
+
+- **Case-sensitive** search (e.g., `Chill` ≠ `chill`).
+- **Duplicates in the stream increase the count** (e.g., if `"wind"` appears twice, it counts twice).
+- Returns an empty list if there are no matches.
+
+---
+
+## License
+
+This project is licensed under the **MIT License**. See `LICENSE` for details.
