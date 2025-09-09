@@ -34,14 +34,18 @@ Matches are scanned **horizontally (left→right)** and **vertically (top→bott
 
 ## Getting Started
 
-1) Build & Test (CLI)
+**1) Build & Test (CLI)**
 
-    dotnet build
-    dotnet test
+```bash
+dotnet build
+dotnet test
+```
 
-2) Run the console sample
+**2) Run the console sample**
 
-    dotnet run --project WordFinderApp
+```bash
+dotnet run --project WordFinderApp
+```
 
 ---
 
