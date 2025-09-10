@@ -9,7 +9,6 @@
 A small library + console sample to search a character matrix for the **Top 10 most repeated words** coming from a word stream.  
 Matches are scanned **horizontally (left→right)** and **vertically (top→bottom)**.
 
----
 
 ## Features
 
@@ -18,7 +17,6 @@ Matches are scanned **horizontally (left→right)** and **vertically (top→bott
 - **Case-sensitive** matching (inputs must match exactly).
 - Unit tests with **xUnit**.
 
----
 
 ## Project Structure
 
@@ -29,8 +27,6 @@ Matches are scanned **horizontally (left→right)** and **vertically (top→bott
     │  └─ Program.cs
     └─ WordFinder.Tests/       # xUnit tests
        └─ WordFinderTests.cs
-
----
 
 ## Getting Started
 
@@ -46,8 +42,6 @@ dotnet test
 ```bash
 dotnet run --project WordFinderApp
 ```
-
----
 
 ## Example
 
@@ -67,8 +61,6 @@ Result
 
     ["chill", "cold", "wind"]
 
----
-
 ## How it works (brief)
 
 - Precomputes a set with **all substrings** from every row and every column.
@@ -77,15 +69,11 @@ Result
 
 *Complexity (sketch):* building the set is roughly `O(R*C*(R+C))` substrings with hashing; lookups are `O(1)` average per stream item.
 
----
-
 ## Notes
 
 - **Case-sensitive** search (e.g., `Chill` ≠ `chill`).
 - **Duplicates in the stream increase the count** (e.g., if `"wind"` appears twice, it counts twice).
 - Returns an empty list if there are no matches.
-
----
 
 ## License
 
