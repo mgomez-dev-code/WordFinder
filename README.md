@@ -12,7 +12,7 @@ Matches are scanned **horizontally (left→right)** and **vertically (top→bott
 
 ## Features
 
-- 🔍 Looks up words across **rows** and **columns**.
+- 🔍 Finds words spanning **rows** and **columns**.
 - 🔟 Returns the **Top 10** words by frequency **in the input stream** that also exist in the matrix (ties resolved alphabetically).
 - 🅰️ **Case-sensitive** matching (inputs must match exactly).
 - 🧪 Unit tests with **xUnit**.
